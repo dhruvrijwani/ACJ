@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PG Diploma in Integrated Multimedia Journalism | Asian College of Journalism</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Roboto',sans-serif;color:#1a1a18;background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+input,select,textarea{-webkit-appearance:none;font-family:inherit}
+
+/* ─── CSS VARIABLES ─── */
+:root{
+  --orange:#ff9900;
+  --orange-light:rgba(255,153,0,.1);
+  --orange-mid:rgba(255,153,0,.18);
+  --blue:#005ea4;
+  --blue-light:rgba(0,94,164,.07);
+  --blue-mid:rgba(0,94,164,.14);
+  --ink:#1a1a18;
+  --ink-2:#3d3d3a;
+  --ink-3:#6b6b68;
+  --ink-4:#9a9a97;
+  --rule:#e8e8e4;
+  --bg:#fff;
+  --bg-warm:#faf9f7;
+  --bg-warm2:#f5f4f0;
+  --r:8px;
+  --rl:14px;
+  --shadow-sm:0 2px 12px rgba(0,0,0,.06);
+  --shadow-md:0 8px 32px rgba(0,0,0,.09);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.12);
+}
+
+/* ─── NOISE TEXTURE ─── */
+.noise::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0
+}
+
+/* ─── TOPBAR ─── */
+.topbar{background:var(--ink);padding:7px 48px;display:flex;justify-content:center;align-items:center;gap:32px;flex-wrap:wrap}
+.ti{display:flex;align-items:center;gap:7px;font-size:11.5px;color:rgba(255,255,255,.38);letter-spacing:.2px}
+.ti a{color:rgba(255,255,255,.38);transition:color .2s}
+.ti a:hover{color:#fff}
+.ti svg{flex-shrink:0;opacity:.6}
+.ti-sep{width:1px;height:12px;background:rgba(255,255,255,.12)}
+
+/* ─── NAV ─── */
+.nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.nav-logo img{height:42px;width:auto}
+.nav-logo-text{display:none;font-family:'Roboto Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--blue);line-height:1.2}
+.nav-badge{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--orange);background:var(--orange-light);border:1px solid var(--orange-mid);padding:3px 10px;border-radius:100px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink-3);transition:color .2s;letter-spacing:.1px}
+.nav-links a:hover{color:var(--ink)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-ghost{font-size:13px;font-weight:600;color:var(--blue);padding:8px 18px;border:1.5px solid var(--blue-mid);border-radius:var(--r);transition:all .2s;letter-spacing:.1px}
+.btn-ghost:hover{background:var(--blue-light)}
+.btn-primary{font-size:13px;font-weight:700;color:#fff;background:var(--orange);padding:9px 22px;border-radius:var(--r);transition:all .2s;letter-spacing:.1px}
+.btn-primary:hover{background:#e68a00;transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,153,0,.28)}
+
+/* ─── HERO ─── */
+.hero{background:var(--bg-warm);position:relative;overflow:hidden;padding:80px 48px 0}
+.hero-pattern{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.4;background-image:
+  repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,0,0,.04) 39px,rgba(0,0,0,.04) 40px),
+  repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(0,0,0,.04) 39px,rgba(0,0,0,.04) 40px)}
+.hero-glow{position:absolute;top:-120px;right:-80px;width:640px;height:640px;background:radial-gradient(circle,rgba(255,153,0,.06) 0%,transparent 65%);pointer-events:none;z-index:0}
+.hero-glow2{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,94,164,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:60px;align-items:start;position:relative;z-index:1}
+
+/* Hero Left */
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+.kicker-line{width:28px;height:3px;background:var(--orange);border-radius:2px;flex-shrink:0}
+.kicker-text{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ink-3)}
+.hero-course-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);background:var(--blue-light);border:1px solid var(--blue-mid);padding:5px 14px;border-radius:4px;margin-bottom:16px}
+.hero h1{font-family:'Roboto Condensed',sans-serif;font-size:clamp(2.4rem,4vw,3.6rem);font-weight:900;line-height:1.06;letter-spacing:-.5px;color:var(--ink);margin-bottom:8px}
+.h1-course{display:block;font-size:clamp(1.1rem,2vw,1.55rem);font-weight:700;font-family:'Roboto',sans-serif;color:var(--blue);letter-spacing:-.2px;margin-bottom:6px;line-height:1.3}
+.hero-sub{font-size:16px;color:var(--ink-3);line-height:1.75;max-width:500px;margin-bottom:32px}
+
+.hero-bullets{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.hb{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.hb-dot{width:22px;height:22px;border-radius:50%;background:var(--orange-light);border:1.5px solid var(--orange-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px}
+.cta-main{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font-size:14.5px;font-weight:700;padding:13px 28px;border-radius:var(--r);transition:all .2s;letter-spacing:.1px}
+.cta-main:hover{background:#e68a00;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,153,0,.3)}
+.cta-sec{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--blue);font-size:14px;font-weight:600;padding:12px 24px;border-radius:var(--r);border:1.5px solid var(--blue-mid);transition:all .2s}
+.cta-sec:hover{background:var(--blue-light);transform:translateY(-1px)}
+
+.hero-trust{display:flex;flex-wrap:wrap;gap:18px;padding-top:28px;border-top:1px solid var(--rule);padding-bottom:56px}
+.ht{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-4)}
+.ht svg{flex-shrink:0;color:var(--blue)}
+
+/* Hero Right - Form */
+.form-wrap{position:sticky;top:80px}
+.form-card{background:#fff;border:1px solid var(--rule);border-radius:var(--rl);box-shadow:var(--shadow-lg);overflow:hidden}
+.form-top-bar{height:4px;background:var(--blue)}
+.form-inner{padding:28px 26px}
+.form-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.form-card h3{font-family:'Roboto Condensed',sans-serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:3px;letter-spacing:-.2px}
+.form-card .form-desc{font-size:12.5px;color:var(--ink-4);margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--bg-warm2)}
+.fg{margin-bottom:11px}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--ink-2);margin-bottom:4px;letter-spacing:.3px;text-transform:uppercase}
+.fg input,.fg select{width:100%;padding:10px 13px;border:1.5px solid var(--rule);border-radius:7px;font-size:13.5px;color:var(--ink);background:var(--bg-warm);outline:none;transition:all .2s}
+.fg input:focus,.fg select:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--blue-light)}
+.fg input::placeholder{color:var(--ink-4)}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239a9a97' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.frow2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.btn-form{width:100%;background:var(--orange);color:#fff;font-size:14px;font-weight:700;padding:13px;border-radius:var(--r);margin-top:8px;transition:all .2s;letter-spacing:.2px}
+.btn-form:hover{background:#e68a00;transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,153,0,.28)}
+.form-privacy{display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;color:var(--ink-4);margin-top:9px}
+.form-success{display:none;padding:28px 0;text-align:center}
+.fcheck{width:52px;height:52px;background:#f0fdf4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.form-success h4{font-family:'Roboto Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.form-success p{font-size:13px;color:var(--ink-4);line-height:1.6}
+
+/* ─── STATS BAND ─── */
+.stats-band{background:var(--blue)}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:28px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Roboto Condensed',sans-serif;font-size:2.4rem;font-weight:900;color:var(--orange);line-height:1;letter-spacing:-1px}
+.stat-l{font-size:12px;color:rgba(255,255,255,.5);margin-top:5px;letter-spacing:.3px}
+.stat-l strong{color:rgba(255,255,255,.8);font-weight:600}
+
+/* ─── SECTION BASE ─── */
+.section{padding:96px 48px}
+.section-alt{background:var(--bg-warm)}
+.section-dark{background:var(--ink)}
+.section-ruled{background:var(--bg-warm);position:relative}
+.section-ruled::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(0,0,0,.03) 47px,rgba(0,0,0,.03) 48px);pointer-events:none}
+.w{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.sec-kicker{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+.sec-kicker-line{width:28px;height:3px;background:var(--orange);border-radius:2px;flex-shrink:0}
+.sec-kicker-text{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ink-3)}
+.sec-kicker-dark .sec-kicker-text{color:rgba(255,255,255,.3)}
+.sec-title{font-family:'Roboto Condensed',sans-serif;font-size:clamp(1.9rem,3vw,2.8rem);font-weight:900;line-height:1.06;letter-spacing:-.5px;color:var(--ink);margin-bottom:14px}
+.sec-title-light{color:#fff}
+.sec-body{font-size:15.5px;color:var(--ink-3);line-height:1.75;max-width:580px}
+.sec-body-light{color:rgba(255,255,255,.45)}
+.sec-head{margin-bottom:52px}
+.sec-head-centered{text-align:center}
+.sec-head-centered .sec-kicker{justify-content:center}
+.sec-head-centered .sec-body{margin:0 auto}
+
+/* ─── PLACEMENTS (MARQUEE) ─── */
+.placements-head{max-width:1200px;margin:0 auto;padding:0 48px;padding-top:64px;padding-bottom:40px}
+.marquee-section{padding:0 0 64px}
+.marquee-outer{overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:#fff;padding:20px 0;display:flex;flex-direction:column;gap:10px}
+.mrow{display:flex;gap:10px;white-space:nowrap}
+.mrow1{animation:scrollLeft 38s linear infinite}
+.mrow2{animation:scrollRight 38s linear infinite}
+.mrow:hover{animation-play-state:paused}
+@keyframes scrollLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scrollRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.mitem{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--bg-warm);border:1px solid var(--rule);border-radius:6px;flex-shrink:0;transition:all .2s}
+.mitem:hover{background:#fff;border-color:var(--ink-4);transform:translateY(-1px)}
+.mitem img{height:18px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.55;transition:all .2s}
+.mitem:hover img{filter:grayscale(0);opacity:1}
+.mitem-name{font-size:12px;font-weight:600;color:var(--ink-4);white-space:nowrap;transition:color .2s;letter-spacing:.2px}
+.mitem:hover .mitem-name{color:var(--ink)}
+
+/* ─── WHY GRID ─── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.wcard{background:#fff;padding:32px 28px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);transition:background .2s}
+.wcard:hover{background:var(--blue-light)}
+.wcard:nth-child(3n){border-right:none}
+.wcard:nth-last-child(-n+3){border-bottom:none}
+.wcard-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-light);border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:all .2s}
+.wcard:hover .wcard-icon{background:var(--blue-mid)}
+.wcard h4{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;letter-spacing:-.2px}
+.wcard p{font-size:13px;color:var(--ink-3);line-height:1.72}
+
+/* ─── HIGHLIGHTS ─── */
+.highlights-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.hcard{background:#fff;padding:28px 24px;transition:background .2s}
+.hcard:hover{background:var(--orange-light)}
+.hcard-num{font-family:'Roboto Condensed',sans-serif;font-size:2rem;font-weight:900;color:var(--orange);line-height:1;margin-bottom:10px;letter-spacing:-1px}
+.hcard h4{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-.1px}
+.hcard p{font-size:12px;color:var(--ink-4);line-height:1.65}
+
+/* ─── CURRICULUM ─── */
+.curr-layout{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start}
+.curr-tabs{position:sticky;top:90px;display:flex;flex-direction:column;gap:2px}
+.ctab{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--ink-3);cursor:pointer;transition:all .2s;background:none;text-align:left}
+.ctab:hover{background:var(--bg-warm2);color:var(--ink)}
+.ctab.active{background:var(--blue);color:#fff}
+.ctab-num{width:22px;height:22px;border-radius:5px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,.15);color:inherit}
+.curr-content{display:none}
+.curr-content.active{display:block}
+.curr-card{background:#fff;border:1px solid var(--rule);border-radius:var(--rl);padding:36px;box-shadow:var(--shadow-sm)}
+.curr-card h3{font-family:'Roboto Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:var(--ink);margin-bottom:10px;letter-spacing:-.3px}
+.curr-card .curr-intro{font-size:15px;color:var(--ink-3);line-height:1.75;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--rule)}
+.curr-topics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ctopic{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--bg-warm);border-radius:8px;font-size:13px;color:var(--ink-2);line-height:1.5}
+.ctopic-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0;margin-top:6px}
+
+/* ─── CAMPUS ─── */
+.campus-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;height:480px}
+.cg-main{grid-column:span 7;border-radius:var(--rl);overflow:hidden;position:relative}
+.cg-sm1{grid-column:span 5;grid-row:1;border-radius:var(--rl);overflow:hidden;position:relative}
+.cg-sm2{grid-column:span 3;grid-row:2;border-radius:var(--rl);overflow:hidden;position:relative}
+.cg-sm3{grid-column:span 2;grid-row:2;border-radius:var(--rl);overflow:hidden;position:relative}
+.campus-grid .cg-main,.cg-sm1,.cg-sm2,.cg-sm3{background:var(--bg-warm2)}
+.campus-grid img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.campus-grid div:hover img{transform:scale(1.04)}
+.cg-lbl{position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);color:#fff;font-size:10.5px;font-weight:700;padding:4px 11px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase}
+.campus-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.cstat{background:var(--bg-warm);border:1px solid var(--rule);border-radius:var(--r);padding:20px;text-align:center}
+.cstat-n{font-family:'Roboto Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:var(--blue);line-height:1}
+.cstat-l{font-size:12px;color:var(--ink-4);margin-top:4px}
+
+/* ─── TESTIMONIALS ─── */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:var(--rl);padding:28px 24px;transition:background .2s}
+.tcard:hover{background:rgba(255,255,255,.07)}
+.tcard-quote{font-size:32px;color:var(--orange);line-height:1;margin-bottom:12px;font-family:'Roboto Condensed',sans-serif;opacity:.6}
+.tcard p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.78;margin-bottom:24px;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07)}
+.tcard-av{width:40px;height:40px;border-radius:50%;background:var(--orange-mid);border:1.5px solid rgba(255,153,0,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--orange);flex-shrink:0}
+.tcard-name{font-size:13.5px;font-weight:700;color:#fff}
+.tcard-role{font-size:11.5px;color:rgba(255,255,255,.3);margin-top:1px}
+
+/* ─── PROGRAMME DETAILS ─── */
+.details-layout{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
+.details-list{display:flex;flex-direction:column;gap:0}
+.drow{display:flex;gap:16px;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--rule)}
+.drow:last-child{border-bottom:none}
+.drow-icon{width:42px;height:42px;border-radius:10px;background:var(--orange-light);border:1px solid var(--orange-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.drow-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);margin-bottom:3px}
+.drow-val{font-size:15.5px;font-weight:700;color:var(--ink);letter-spacing:-.2px}
+.drow-note{font-size:12.5px;font-weight:400;color:var(--ink-4);margin-top:2px}
+.elig-card{background:var(--ink);border-radius:var(--rl);padding:36px 32px;position:sticky;top:88px}
+.elig-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.elig-title{font-family:'Roboto Condensed',sans-serif;font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:24px;letter-spacing:-.2px}
+.elig-item{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:14px}
+.elig-check{width:20px;height:20px;border-radius:50%;background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.elig-btn-wrap{margin-top:28px;display:flex;flex-direction:column;gap:10px}
+.elig-btn{display:block;text-align:center;font-size:14px;font-weight:700;padding:13px;border-radius:var(--r);transition:all .2s}
+.elig-btn.orange{background:var(--orange);color:#fff}
+.elig-btn.orange:hover{background:#e68a00;transform:translateY(-1px)}
+.elig-btn.outline{border:1.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
+.elig-btn.outline:hover{border-color:rgba(255,255,255,.3);color:#fff}
+
+/* ─── FAQ ─── */
+.faq-wrap{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--rule)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:15px;font-weight:600;color:var(--ink);background:none;text-align:left;gap:20px;transition:color .2s;letter-spacing:-.1px}
+.faq-item.open .faq-q{color:var(--blue)}
+.faq-icon{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .28s}
+.faq-item.open .faq-icon{background:var(--blue);border-color:var(--blue);transform:rotate(45deg)}
+.faq-item.open .faq-icon svg{color:#fff}
+.faq-a{display:none;font-size:14px;color:var(--ink-3);line-height:1.8;padding-bottom:20px}
+.faq-item.open .faq-a{display:block}
+
+/* ─── FINAL CTA ─── */
+.final-cta{background:var(--bg-warm);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.final-cta-inner{max-width:1200px;margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.final-cta-left h2{font-family:'Roboto Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;color:var(--ink);letter-spacing:-.5px;line-height:1.08;margin-bottom:16px}
+.final-cta-left p{font-size:15px;color:var(--ink-3);line-height:1.75;margin-bottom:28px}
+.final-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+/* Trust badges grid */
+.trust-badges-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.trust-badge{background:#fff;border:1px solid var(--rule);border-radius:var(--rl);padding:24px 22px;transition:all .2s}
+.trust-badge:hover{border-color:var(--blue-mid);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.trust-badge-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-light);border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.trust-badge-val{font-family:'Roboto Condensed',sans-serif;font-size:1.65rem;font-weight:900;color:var(--ink);letter-spacing:-.5px;line-height:1.1;margin-bottom:5px}
+.trust-badge-label{font-size:12.5px;color:var(--ink-4);line-height:1.55}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink);padding:52px 48px 28px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-brand img{height:38px;filter:brightness(0) invert(1);opacity:.55;margin-bottom:12px}
+.footer-brand img.err-hide{display:none}
+.footer-brand-name{font-family:'Roboto Condensed',sans-serif;font-size:18px;color:rgba(255,255,255,.5);margin-bottom:12px}
+.footer-brand p{font-size:12.5px;color:rgba(255,255,255,.28);line-height:1.7;max-width:280px}
+.footer-col h5{font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.footer-links{display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-contact{display:flex;flex-direction:column;gap:10px}
+.fci{display:flex;align-items:center;gap:9px;font-size:12.5px;color:rgba(255,255,255,.32)}
+.fci a{color:rgba(255,255,255,.32);transition:color .2s}
+.fci a:hover{color:#fff}
+.fci svg{flex-shrink:0;opacity:.5}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;padding-top:24px;flex-wrap:wrap;gap:10px;font-size:11.5px;color:rgba(255,255,255,.2)}
+.footer-bot a{color:rgba(255,153,0,.45);transition:color .2s}
+.footer-bot a:hover{color:var(--orange)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.22,.8,.44,1),transform .6s cubic-bezier(.22,.8,.44,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .form-wrap{position:relative;top:0}
+  .highlights-grid{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  .details-layout{grid-template-columns:1fr;gap:32px}
+  .elig-card{position:relative;top:0}
+  .curr-layout{grid-template-columns:1fr;gap:20px}
+  .curr-tabs{flex-direction:row;flex-wrap:wrap;position:relative;top:0}
+  .final-cta-inner{grid-template-columns:1fr;gap:40px}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .topbar{display:none}
+  .nav{padding:0 20px}
+  .nav-links,.nav-badge,.btn-ghost{display:none}
+  .hero,.section,.final-cta-inner,.placements-head{padding-left:20px;padding-right:20px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(3){border-right:1px solid rgba(255,255,255,.1);border-top:1px solid rgba(255,255,255,.1)}
+  .stat:nth-child(4){border-right:none;border-top:1px solid rgba(255,255,255,.1)}
+  .why-grid{grid-template-columns:1fr}
+  .wcard:nth-child(3n){border-right:1px solid var(--rule)}
+  .wcard:nth-child(odd){border-right:none}
+  .wcard:nth-child(even){border-right:none}
+  .highlights-grid{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:1fr}
+  .campus-grid{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}
+  .cg-main{grid-column:span 2;height:220px}
+  .cg-sm1{grid-column:span 2;height:180px}
+  .cg-sm2{grid-column:span 1;height:150px}
+  .cg-sm3{grid-column:span 1;height:150px}
+  .campus-stats{grid-template-columns:repeat(3,1fr)}
+  footer{padding:36px 20px 24px}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="ti">
+    <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 5.18 2 2 0 015.09 3h3a2 2 0 012 1.72c.127 1.012.36 2.01.705 2.97a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006.99 6.99l1.25-1.25a2 2 0 012.11-.45c.96.344 1.958.578 2.97.705A2 2 0 0122 16.92z"/></svg>
+    <a href="tel:+914422542842">+91-44-22542842 / 43 / 44 / 45</a>
+  </span>
+  <span class="ti-sep"></span>
+  <span class="ti">
+    <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <a href="/cdn-cgi/l/email-protection#c3a2b0aaa2ad9caea6a7aaa283a2b0aaa2adaea6a7aaa2edacb1a4edaaad"><span class="__cf_email__" data-cfemail="10716379717e4f7d7574797150716379717e7d757479713e7f62773e797e">[email&#160;protected]</span></a>
+  </span>
+  <span class="ti-sep"></span>
+  <span class="ti">
+    <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Taramani, Chennai
+  </span>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <img src="https://www.asianmedia.org.in/acj/assets/img/logo.png" alt="Asian College of Journalism">
+  </div>
+  <div class="nav-links">
+    <a href="#why">Why ACJ</a>
+    <a href="#curriculum">Curriculum</a>
+    <a href="#campus">Campus</a>
+    <a href="#placements">Placements</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-actions">
+    <a href="#apply" class="btn-ghost">Download Brochure</a>
+    <a href="#apply" class="btn-primary">Apply Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <!-- Left -->
+    <div>
+      <div class="hero-kicker reveal">
+        <span class="kicker-line"></span>
+        <span class="kicker-text">Asian College of Journalism &nbsp;·&nbsp; Chennai &nbsp;·&nbsp; Admissions Open 2025</span>
+      </div>
+      <div class="hero-course-tag reveal d1">Postgraduate Diploma &nbsp;·&nbsp; 10 Months &nbsp;·&nbsp; Residential</div>
+      <h1 class="reveal d1">
+        <span class="h1-course">Integrated Multimedia Journalism</span>
+        Become a multi-platform journalist
+      </h1>
+      <p class="hero-sub reveal d2">Train across print, broadcast, digital, and radio at India's premier journalism school. Work in a live newsroom from Day 1 and graduate career-ready.</p>
+
+      <div class="hero-bullets reveal d2">
+        <div class="hb">
+          <span class="hb-dot"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Real newsroom training from the very first week
+        </div>
+        <div class="hb">
+          <span class="hb-dot"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Small batches of 25–30 students — deep mentorship
+        </div>
+        <div class="hb">
+          <span class="hb-dot"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+          100% placement record — maintained for 25+ years
+        </div>
+        <div class="hb">
+          <span class="hb-dot"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Pathway to Cardiff University M.A. in Journalism
+        </div>
+      </div>
+
+      <div class="hero-ctas reveal d3">
+        <a href="#apply" class="cta-main">
+          Apply Now — 2025 Batch
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#apply" class="cta-sec">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Brochure
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Form -->
+    <div class="form-wrap reveal d2" id="apply">
+      <div class="form-card">
+        <div class="form-top-bar"></div>
+        <div class="form-inner">
+          <div class="form-label">Admissions Open — 2025</div>
+          <h3>Start Your Application</h3>
+          <p class="form-desc">Get the brochure &amp; speak to our admissions team</p>
+          <div id="formBody">
+            <div class="fg">
+              <label>Full Name *</label>
+              <input type="text" id="f_name" placeholder="Your full name">
+            </div>
+            <div class="frow2">
+              <div class="fg">
+                <label>Mobile *</label>
+                <input type="tel" id="f_phone" placeholder="+91 XXXXXXXXXX">
+              </div>
+              <div class="fg">
+                <label>Email *</label>
+                <input type="email" id="f_email" placeholder="you@email.com">
+              </div>
+            </div>
+            <div class="fg">
+              <label>Highest Qualification *</label>
+              <select id="f_qual">
+                <option value="">Select qualification</option>
+                <option>Bachelor's — Completed</option>
+                <option>Bachelor's — Final Year</option>
+                <option>Master's Degree</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>Background</label>
+              <select id="f_stream">
+                <option value="">Select your background</option>
+                <option>Journalism / Mass Communication</option>
+                <option>Arts / Humanities</option>
+                <option>Engineering / Technology</option>
+                <option>Commerce / Business</option>
+                <option>Science</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>City</label>
+              <input type="text" id="f_city" placeholder="Your city">
+            </div>
+            <button class="btn-form" onclick="submitForm()">Send Me Programme Details</button>
+            <p class="form-privacy">
+              <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Your information is safe with us
+            </p>
+          </div>
+          <div class="form-success" id="formSuccess">
+            <div class="fcheck">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h4>Application Received!</h4>
+            <p>Our admissions team will contact you within 24 hours. Check your email for next steps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">100%</div><div class="stat-l"><strong>Placement</strong> Record</div></div>
+    <div class="stat"><div class="stat-n">3.3K+</div><div class="stat-l"><strong>Alumni</strong> Worldwide</div></div>
+    <div class="stat"><div class="stat-n">41+</div><div class="stat-l"><strong>Faculty</strong> Experts</div></div>
+    <div class="stat"><div class="stat-n">25 Yrs</div><div class="stat-l"><strong>Legacy</strong> of Excellence</div></div>
+  </div>
+</div>
+
+<!-- PLACEMENTS -->
+<div id="placements">
+  <div class="placements-head">
+    <div class="sec-kicker reveal">
+      <span class="sec-kicker-line"></span>
+      <span class="sec-kicker-text">Placements</span>
+    </div>
+    <h2 class="sec-title reveal d1">Where our graduates work</h2>
+    <p class="sec-body reveal d2">The ACJ is the most preferred recruitment destination for India's leading media organisations. Our graduates work at the top of print, broadcast, digital and international media — many in editorial leadership roles. In several years, job offers exceeded the number of graduating students.</p>
+  </div>
+  <div class="marquee-section">
+    <div class="marquee-outer">
+      <div class="mrow mrow1" id="mrow1"></div>
+      <div class="mrow mrow2" id="mrow2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY ACJ -->
+<section class="section" id="why">
+  <div class="w">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="sec-kicker-line"></span><span class="sec-kicker-text">Why ACJ</span></div>
+      <h2 class="sec-title">The only fully integrated<br>multimedia curriculum in South Asia</h2>
+      <p class="sec-body">Most journalism programmes train you for a single platform. ACJ makes you a platform-agnostic storyteller — ready to work across any newsroom, TV channel, digital portal, or independent venture from day one.</p>
+    </div>
+    <div class="why-grid">
+      <div class="wcard reveal">
+        <div class="wcard-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><path d="M12 6v-2M12 20v-2M6 12H4M20 12h-2M7.76 7.76l-1.42-1.42M17.66 17.66l-1.42-1.42M7.76 16.24l-1.42 1.42M17.66 6.34l-1.42 1.42"/></svg>
+        </div>
+        <h4>Industry-Ready from Day One</h4>
+        <p>Produce live news shows, publish a twice-weekly newspaper, and report for digital platforms — all as coursework, not after it. You graduate with a real portfolio.</p>
+      </div>
+      <div class="wcard reveal d1">
+        <div class="wcard-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4>Professional Newsroom Infrastructure</h4>
+        <p>10–12 video editing suites, professional broadcast studios, and an 80,000 sq. ft. campus that mirrors a real media house — not a classroom with textbooks.</p>
+      </div>
+      <div class="wcard reveal d2">
+        <div class="wcard-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h4>Guaranteed Career Launch</h4>
+        <p>100% placement maintained for over two decades. Campus recruitment with top media houses. Most graduates are placed within three months of completion.</p>
+      </div>
+      <div class="wcard reveal">
+        <div class="wcard-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/></svg>
+        </div>
+        <h4>Faculty Drawn from the Field</h4>
+        <p>BBC professionals, veteran editors like N. Ram (The Hindu), and award-winning journalists like P. Sainath teach from decades of lived experience in journalism.</p>
+      </div>
+      <div class="wcard reveal d1">
+        <div class="wcard-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h4>International Recognition</h4>
+        <p>Eligible graduates can transfer credits to Cardiff University and earn a full M.A. in Journalism from one of the world's top-ranked journalism schools.</p>
+      </div>
+      <div class="wcard reveal d2">
+        <div class="wcard-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4>AI, Data &amp; Entrepreneurial Journalism</h4>
+        <p>Contemporary modules in AI-assisted reporting, data journalism, and building your own independent media venture — skills that define 21st-century journalism.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="section section-alt">
+  <div class="w">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="sec-kicker-line"></span><span class="sec-kicker-text">Programme Highlights</span></div>
+      <h2 class="sec-title">A programme built for<br>where journalism is heading</h2>
+    </div>
+    <div class="highlights-grid">
+      <div class="hcard reveal">
+        <div class="hcard-num">10</div>
+        <h4>Months of Full-Time Training</h4>
+        <p>Intensive residential programme — June/July to May — structured to mirror real newsroom life from the first week.</p>
+      </div>
+      <div class="hcard reveal d1">
+        <div class="hcard-num">4+</div>
+        <h4>Journalism Platforms Mastered</h4>
+        <p>Print, broadcast, digital, and radio — you are trained across all platforms before choosing your specialization track.</p>
+      </div>
+      <div class="hcard reveal d2">
+        <div class="hcard-num">80K</div>
+        <h4>sq. ft. Residential Campus</h4>
+        <p>Solar-powered campus in Taramani, Chennai — with studios, editing suites, digital labs, and residential facilities.</p>
+      </div>
+      <div class="hcard reveal d3">
+        <div class="hcard-num">25</div>
+        <h4>Years of Journalism Excellence</h4>
+        <p>One of India's oldest and most respected journalism schools — with a 25-year track record of placing graduates in top newsrooms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="section section-ruled" id="curriculum">
+  <div class="w">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="sec-kicker-line"></span><span class="sec-kicker-text">Curriculum</span></div>
+      <h2 class="sec-title">What you will master</h2>
+      <p class="sec-body">Ten months of structured, hands-on training — from journalism fundamentals through to specialization and independent practice.</p>
+    </div>
+    <div class="curr-layout">
+      <div class="curr-tabs" id="currTabs">
+        <button class="ctab active" onclick="switchTab(0)" data-tab="0"><span class="ctab-num">01</span>Print &amp; Digital</button>
+        <button class="ctab" onclick="switchTab(1)" data-tab="1"><span class="ctab-num">02</span>Broadcast &amp; TV</button>
+        <button class="ctab" onclick="switchTab(2)" data-tab="2"><span class="ctab-num">03</span>Radio</button>
+        <button class="ctab" onclick="switchTab(3)" data-tab="3"><span class="ctab-num">04</span>Data &amp; AI</button>
+        <button class="ctab" onclick="switchTab(4)" data-tab="4"><span class="ctab-num">05</span>Covering Deprivation</button>
+        <button class="ctab" onclick="switchTab(5)" data-tab="5"><span class="ctab-num">06</span>Entrepreneurial</button>
+      </div>
+      <div>
+        <div class="curr-content active reveal" data-content="0">
+          <div class="curr-card">
+            <h3>Print &amp; Digital Journalism</h3>
+            <p class="curr-intro">News writing, editing, subediting, and publishing for print and digital platforms. Produce ACJ's twice-weekly newspaper throughout the year as part of your coursework.</p>
+            <div class="curr-topics">
+              <div class="ctopic"><span class="ctopic-dot"></span>News reporting and writing fundamentals</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Feature writing and longform journalism</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Subediting and headline writing</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Page layout and design principles</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Digital storytelling formats</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>SEO and audience analytics</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Social media journalism</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Photo journalism basics</div>
+            </div>
+          </div>
+        </div>
+        <div class="curr-content" data-content="1">
+          <div class="curr-card">
+            <h3>Broadcast &amp; TV Journalism</h3>
+            <p class="curr-intro">Anchoring, scripting, video production, camera operation, and live studio production in a fully equipped broadcast environment. Produce live news shows as part of your training.</p>
+            <div class="curr-topics">
+              <div class="ctopic"><span class="ctopic-dot"></span>Television news scripting</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Studio anchoring and presentation</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Camera operation and framing</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Live news production</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Video editing and post-production</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Package and bulletin production</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Field reporting techniques</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Documentary journalism</div>
+            </div>
+          </div>
+        </div>
+        <div class="curr-content" data-content="2">
+          <div class="curr-card">
+            <h3>Radio Journalism</h3>
+            <p class="curr-intro">Produce radio news programmes in professional recording studios. Learn audio editing, scripting, and on-air presentation in an environment that mirrors public and community radio.</p>
+            <div class="curr-topics">
+              <div class="ctopic"><span class="ctopic-dot"></span>Radio news scripting</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>On-air delivery and voice training</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Audio recording and editing</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Radio documentary production</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Podcast journalism</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Sound design for journalism</div>
+            </div>
+          </div>
+        </div>
+        <div class="curr-content" data-content="3">
+          <div class="curr-card">
+            <h3>Data &amp; AI Journalism</h3>
+            <p class="curr-intro">Use data tools, AI, and visual storytelling to produce evidence-based journalism. Work with real datasets, create infographics, and master AI-assisted reporting workflows.</p>
+            <div class="curr-topics">
+              <div class="ctopic"><span class="ctopic-dot"></span>Data sourcing and verification</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Spreadsheet analysis for journalists</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Data visualisation and infographics</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>AI tools for newsgathering</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>OSINT and digital investigation</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Fact-checking methodologies</div>
+            </div>
+          </div>
+        </div>
+        <div class="curr-content" data-content="4">
+          <div class="curr-card">
+            <h3>Covering Deprivation — Flagship Module</h3>
+            <p class="curr-intro">ACJ's signature course. Report on marginalised communities — rural poverty, caste, labour, health, and gender — with the depth, sensitivity, and rigour their stories demand. Taught by P. Sainath and senior faculty.</p>
+            <div class="curr-topics">
+              <div class="ctopic"><span class="ctopic-dot"></span>Rural and development reporting</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Journalism ethics and sensitivity</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Caste, gender, and labour coverage</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Field immersion and reporting trips</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Accountability journalism</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Human rights reporting</div>
+            </div>
+          </div>
+        </div>
+        <div class="curr-content" data-content="5">
+          <div class="curr-card">
+            <h3>Entrepreneurial Journalism</h3>
+            <p class="curr-intro">Build and monetise your own media platform. Learn to sustain yourself as an independent journalist or launch a media venture — from editorial strategy to revenue models.</p>
+            <div class="curr-topics">
+              <div class="ctopic"><span class="ctopic-dot"></span>Independent media models</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Newsletter and subscription journalism</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Audience building strategies</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Revenue and monetisation models</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Building a personal journalism brand</div>
+              <div class="ctopic"><span class="ctopic-dot"></span>Pitch writing and media business plans</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPUS -->
+<section class="section" id="campus">
+  <div class="w">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="sec-kicker-line"></span><span class="sec-kicker-text">Life at ACJ</span></div>
+      <h2 class="sec-title">A campus built for journalism</h2>
+      <p class="sec-body">An 80,000 sq. ft. solar-powered campus in Taramani, Chennai — with professional studios, live newsrooms, editing suites, and a diverse residential community.</p>
+    </div>
+    <div class="campus-grid reveal">
+      <div class="cg-main">
+        <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=900&q=80&auto=format&fit=crop" alt="Newsroom" loading="lazy">
+        <span class="cg-lbl">Live Newsroom</span>
+      </div>
+      <div class="cg-sm1">
+        <img src="https://images.unsplash.com/photo-1574717025058-2f8737d2e2b7?w=600&q=80&auto=format&fit=crop" alt="Broadcast Studio" loading="lazy">
+        <span class="cg-lbl">Broadcast Studio</span>
+      </div>
+      <div class="cg-sm2">
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&q=80&auto=format&fit=crop" alt="Editing Suite" loading="lazy">
+        <span class="cg-lbl">Editing Suite</span>
+      </div>
+      <div class="cg-sm3">
+        <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=400&q=80&auto=format&fit=crop" alt="Digital Lab" loading="lazy">
+        <span class="cg-lbl">Digital Lab</span>
+      </div>
+    </div>
+    <div class="campus-stats reveal">
+      <div class="cstat"><div class="cstat-n">80,000</div><div class="cstat-l">sq. ft. campus</div></div>
+      <div class="cstat"><div class="cstat-n">10–12</div><div class="cstat-l">Video editing suites</div></div>
+      <div class="cstat"><div class="cstat-n">3</div><div class="cstat-l">Broadcast studios</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-dark">
+  <div class="w">
+    <div class="sec-head reveal">
+      <div class="sec-kicker sec-kicker-dark"><span class="sec-kicker-line"></span><span class="sec-kicker-text">Alumni Speak</span></div>
+      <h2 class="sec-title sec-title-light">Hear from our graduates</h2>
+      <p class="sec-body sec-body-light">Our 3,300+ alumni are leading journalists, editors, anchors, and media founders across India and internationally.</p>
+    </div>
+    <div class="tgrid">
+      <div class="tcard reveal">
+        <div class="tcard-quote">"</div>
+        <p>ACJ didn't teach me about journalism — it made me live it. Producing live shows, filing real stories, working in a proper newsroom. I walked into my first job ready to work on day one.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">AR</div>
+          <div>
+            <div class="tcard-name">Asha Rajan</div>
+            <div class="tcard-role">Senior Reporter, NDTV</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal d1">
+        <div class="tcard-quote">"</div>
+        <p>I came from an engineering background and was nervous. The small batch size and individual faculty attention made all the difference. I made the switch with complete confidence.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">KM</div>
+          <div>
+            <div class="tcard-name">Karthik Menon</div>
+            <div class="tcard-role">Digital Editor, The Hindu</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal d2">
+        <div class="tcard-quote">"</div>
+        <p>The Covering Deprivation module changed how I see journalism entirely. The faculty here are practitioners who have been in the field for decades — and it shows in everything they teach.</p>
+        <div class="tcard-author">
+          <div class="tcard-av">PS</div>
+          <div>
+            <div class="tcard-name">Priya Suresh</div>
+            <div class="tcard-role">Correspondent, Reuters India</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME DETAILS -->
+<section class="section section-alt" id="details">
+  <div class="w">
+    <div class="sec-head reveal">
+      <div class="sec-kicker"><span class="sec-kicker-line"></span><span class="sec-kicker-text">Programme Details</span></div>
+      <h2 class="sec-title">Everything you need to know</h2>
+    </div>
+    <div class="details-layout">
+      <div class="details-list reveal d1">
+        <div class="drow">
+          <div class="drow-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><div class="drow-label">Duration</div><div class="drow-val">10 Months — Full-time, Residential</div><div class="drow-note">June / July 2025 to May 2026 academic year</div></div>
+        </div>
+        <div class="drow">
+          <div class="drow-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div><div class="drow-label">Batch Size</div><div class="drow-val">25–30 Students per Specialization</div><div class="drow-note">Intentionally small for personalized mentorship and deep faculty access</div></div>
+        </div>
+        <div class="drow">
+          <div class="drow-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="drow-label">Campus</div><div class="drow-val">Taramani, Chennai</div><div class="drow-note">80,000 sq. ft. solar-powered residential campus with studios and newsrooms</div></div>
+        </div>
+        <div class="drow">
+          <div class="drow-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="1.8"><path d="M6 3h12M6 8h12M6 8a5 5 0 005 5M6 8a5 5 0 000 10h3m0 0l5-5"/></svg></div>
+          <div><div class="drow-label">Programme Investment</div><div class="drow-val">~₹7.5 Lakhs (Complete Programme)</div><div class="drow-note">SAF-Madanjeet Singh Scholarship available for SAARC-region students. Merit scholarships also available.</div></div>
+        </div>
+        <div class="drow">
+          <div class="drow-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div><div class="drow-label">Qualification</div><div class="drow-val">Postgraduate Diploma in Journalism</div><div class="drow-note">Cardiff University M.A. in Journalism pathway available for eligible graduates</div></div>
+        </div>
+        <div class="drow">
+          <div class="drow-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="drow-label">Entrance Process</div><div class="drow-val">Written Test + Interview</div><div class="drow-note">English proficiency, current affairs, and analytical essay. No prior journalism background required.</div></div>
+        </div>
+      </div>
+      <div class="elig-card reveal d2">
+        <div class="elig-label">Eligibility</div>
+        <div class="elig-title">Who should apply</div>
+        <div class="elig-item"><span class="elig-check"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Bachelor's degree in any discipline — students awaiting final results may also apply</div>
+        <div class="elig-item"><span class="elig-check"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Strong proficiency in English — written and spoken</div>
+        <div class="elig-item"><span class="elig-check"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Genuine interest in journalism and storytelling</div>
+        <div class="elig-item"><span class="elig-check"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>Awareness of current national and international affairs</div>
+        <div class="elig-item"><span class="elig-check"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>No prior journalism experience required</div>
+        <div class="elig-item"><span class="elig-check"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#ff9900" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>All backgrounds welcome — engineering, science, commerce, arts</div>
+        <div class="elig-btn-wrap">
+          <a href="#apply" class="elig-btn orange">Apply for 2025 Batch</a>
+          <a href="#apply" class="elig-btn outline">Download Brochure &amp; Fee Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="w">
+    <div class="sec-head sec-head-centered reveal">
+      <div class="sec-kicker" style="justify-content:center"><span class="sec-kicker-line"></span><span class="sec-kicker-text">FAQ</span></div>
+      <h2 class="sec-title">Frequently asked questions</h2>
+      <p class="sec-body" style="margin:0 auto;text-align:center">Everything you need to know before applying.</p>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">I'm from engineering / commerce / science. Can I apply?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">Absolutely. ACJ welcomes graduates from all disciplines — engineering, science, commerce, arts, and beyond. The programme trains you from scratch and no prior journalism experience is needed. Many of our most successful alumni came from non-journalism backgrounds.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is this a degree or a diploma?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">It is a Postgraduate Diploma — recognised by Cardiff University and carrying significant standing in the Indian and international media industry. Eligible students can pursue the Cardiff University M.A. in Journalism through a credit-transfer pathway after graduating from ACJ.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What are my chances of getting placed?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">ACJ has maintained near-100% placement for over two decades. The college arranges campus interviews with leading media houses, and faculty actively assist in career placement. Most graduates find positions within three months of completing the programme. In several years, job offers exceeded the number of graduating students.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Are scholarships or financial assistance available?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">Yes. The SAF-Madanjeet Singh Scholarship fully covers fees for students from SAARC-region countries. ACJ also offers merit-based scholarships. Contact the admissions office for current eligibility criteria and application deadlines.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I pursue the Cardiff University M.A. after the diploma?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">Yes, for students who meet the benchmark criteria set by Cardiff University. After completing the ACJ diploma, eligible students can transfer credits to Cardiff, complete a dissertation, and earn the full M.A. in Journalism — one of the world's most respected journalism degrees.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What does a typical day at ACJ look like?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">Mornings focus on foundation courses — journalism ethics, media law, and theory. Afternoons are spent in specialization training: producing news shows, writing and editing, working in editing suites and studios. Evenings regularly feature guest lectures from industry veterans. It mirrors real newsroom life — intensive, structured, and always hands-on.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">I want to become an independent journalist or start a media venture. Is ACJ for me?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">Yes. The curriculum includes a dedicated Entrepreneurial Journalism module. You will learn to build and monetise your own media platform, develop a business model for independent journalism, and sustain yourself outside a traditional newsroom — skills increasingly essential in today's media landscape.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is accommodation available on campus?<span class="faq-icon"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a">Yes. ACJ is a residential programme. The campus includes hostel facilities for students, making it an immersive, full-time journalism training experience. Accommodation is available for both domestic and international students.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <div class="final-cta-left reveal">
+      <h2>Ready to begin your<br>journalism journey?</h2>
+      <p>Limited seats for the 2025 batch. Apply early to secure your place in India's most respected journalism programme.</p>
+      <div class="final-cta-btns">
+        <a href="#apply" class="cta-main">
+          Apply Now — 2025 Batch
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#apply" class="cta-sec">Download Brochure</a>
+      </div>
+    </div>
+    <div class="final-cta-right reveal d2">
+      <div class="trust-badges-grid">
+        <div class="trust-badge">
+          <div class="trust-badge-icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="trust-badge-val">25–30</div>
+          <div class="trust-badge-label">Students per batch — small &amp; focused</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="trust-badge-val">Industry</div>
+          <div class="trust-badge-label">Focused curriculum built with practitioners</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="trust-badge-val">100%</div>
+          <div class="trust-badge-label">Placement record — maintained 25+ years</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">
+            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#005ea4" stroke-width="1.8"><path d="M6 3h12M6 8h12M6 8a5 5 0 005 5M6 8a5 5 0 000 10h3m0 0l5-5"/></svg>
+          </div>
+          <div class="trust-badge-val">Scholarships</div>
+          <div class="trust-badge-label">Merit &amp; SAARC scholarships available</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="https://www.asianmedia.org.in/acj/assets/img/logo.png" alt="ACJ" onerror="this.classList.add('err-hide');this.nextElementSibling.style.display='block'">
+        <div class="footer-brand-name" style="display:none">Asian College of Journalism</div>
+        <p>India's leading postgraduate journalism school. 25 years of excellence, 3,300+ alumni placed at the top of print, broadcast, digital and international media.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Programme</h5>
+        <div class="footer-links">
+          <a href="#why">Why ACJ</a>
+          <a href="#curriculum">Curriculum</a>
+          <a href="#campus">Campus &amp; Infrastructure</a>
+          <a href="#placements">Placements</a>
+          <a href="#details">Programme Details</a>
+          <a href="#faq">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-contact">
+          <div class="fci"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 5.18 2 2 0 015.09 3h3a2 2 0 012 1.72 12.05 12.05 0 00.705 2.97 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006.99 6.99l1.25-1.25a2 2 0 012.11-.45c.96.344 1.958.578 2.97.705A2 2 0 0122 16.92z"/></svg><a href="tel:+914422542842">+91-44-22542842 / 43 / 44 / 45</a></div>
+          <div class="fci"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="/cdn-cgi/l/email-protection#78190b11191627151d1c111938190b111916151d1c111956170a1f561116"><span class="__cf_email__" data-cfemail="8beaf8e2eae5d4e6eeefe2eacbeaf8e2eae5e6eeefe2eaa5e4f9eca5e2e5">[email&#160;protected]</span></a></div>
+          <div class="fci"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Taramani, Chennai, Tamil Nadu</span></div>
+          <div class="fci"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><a href="https://www.asianmedia.org.in/acj/" target="_blank">www.asianmedia.org.in/acj</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2025 Asian College of Journalism. All rights reserved.</span>
+      <span>© <a href="#" target="_blank">Blackcoffee Media</a> | Managed by Blackcoffee Media</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── SCROLL REVEAL ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ── FAQ ── */
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+/* ── CURRICULUM TABS ── */
+function switchTab(i){
+  document.querySelectorAll('.ctab').forEach((t,idx) => t.classList.toggle('active', idx===i));
+  document.querySelectorAll('.curr-content').forEach((c,idx) => c.classList.toggle('active', idx===i));
+}
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+/* ── FORM ── */
+const SHEET_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+function submitForm(){
+  const n = document.getElementById('f_name').value.trim();
+  const p = document.getElementById('f_phone').value.trim();
+  const em = document.getElementById('f_email').value.trim();
+  const q = document.getElementById('f_qual').value;
+  if(!n || !p || !em || !q){ alert('Please fill in all required fields.'); return; }
+  const btn = document.querySelector('#formBody .btn-form');
+  btn.textContent = 'Submitting…'; btn.disabled = true;
+  const data = {name:n,phone:p,email:em,qual:q,stream:document.getElementById('f_stream').value,city:document.getElementById('f_city').value.trim(),source:'ACJ LP Hero',timestamp:new Date().toISOString()};
+  if(SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'){ showSuccess('formBody','formSuccess'); return; }
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(()=>showSuccess('formBody','formSuccess')).catch(()=>{ btn.textContent='Send Me Programme Details'; btn.disabled=false; alert('Something went wrong. Please call +91-44-22542842.'); });
+}
+function showSuccess(bodyId, successId){
+  document.getElementById(bodyId).style.display='none';
+  const s = document.getElementById(successId);
+  s.style.display='block';
+}
+
+/* ── MARQUEE ── */
+const mediaList = [
+  {n:'The Hindu',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/The_Hindu_Logo.svg/200px-The_Hindu_Logo.svg.png'},
+  {n:'NDTV',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/NDTV_logo.svg/200px-NDTV_logo.svg.png'},
+  {n:'Reuters',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Reuters-Logo.svg/200px-Reuters-Logo.svg.png'},
+  {n:'Indian Express',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/The_Indian_Express_logo.svg/200px-The_Indian_Express_logo.svg.png'},
+  {n:'Times of India',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/The_Times_of_India_Logo.svg/200px-The_Times_of_India_Logo.svg.png'},
+  {n:'India Today',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/India_Today_logo.svg/200px-India_Today_logo.svg.png'},
+  {n:'Hindustan Times',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hindustan_Times_Logo.png/200px-Hindustan_Times_Logo.png'},
+  {n:'Deutsche Welle',logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/DW-Logo_2021.svg/200px-DW-Logo_2021.svg.png'},
+  {n:'Economic Times'},
+  {n:'Mint'},
+  {n:'CNN-News18'},
+  {n:'CNBC TV18'},
+  {n:'Times Now'},
+  {n:'The Wire'},
+  {n:'Scroll.in'},
+  {n:'The Print'},
+  {n:'Business Standard'},
+  {n:'The Quint'},
+  {n:'WION'},
+  {n:'Frontline'},
+  {n:'Firstpost'},
+  {n:'Deccan Herald'},
+  {n:'Sun Network'},
+  {n:'Zee News'},
+];
+
+function mkItem(m){
+  const d = document.createElement('div');
+  d.className = 'mitem';
+  if(m.logo){
+    const img = document.createElement('img');
+    img.src = m.logo; img.alt = m.n; img.loading = 'lazy';
+    img.onerror = () => img.remove();
+    d.appendChild(img);
+  }
+  const sp = document.createElement('span');
+  sp.className = 'mitem-name';
+  sp.textContent = m.n;
+  d.appendChild(sp);
+  return d;
+}
+
+function fillRow(id, list){
+  const row = document.getElementById(id);
+  [...list,...list].forEach(m => row.appendChild(mkItem(m)));
+}
+
+const half = Math.ceil(mediaList.length / 2);
+fillRow('mrow1', mediaList.slice(0, half));
+fillRow('mrow2', mediaList.slice(half));
+</script>
+
+<!--
+=== GOOGLE SHEETS SETUP ===
+1. New Google Sheet. Row 1 headers:
+   Timestamp | Name | Phone | Email | Qualification | Stream | City | Source
+
+2. Extensions > Apps Script:
+function doPost(e){
+  var s=SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var d=JSON.parse(e.postData.contents);
+  s.appendRow([d.timestamp,d.name,d.phone,d.email,d.qual,d.stream||'',d.city||'',d.source]);
+  return ContentService.createTextOutput('OK');
+}
+
+3. Deploy > New Deployment > Web App
+   Execute as: Me | Access: Anyone
+   Copy URL → replace 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE' in the script above.
+===========================
+-->
+</body>
+</html>
